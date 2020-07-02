@@ -4,8 +4,7 @@ package tdd.part1;
 // TODO: Money rounding?
 public class Dollar {
 
-  // TODO: make "amount" private
-  public int amount;
+  private int amount;
 
   public Dollar(int amount) {
     this.amount = amount;
