@@ -14,4 +14,12 @@ public class Dollar {
   public Dollar times(int multiplier) {
     return new Dollar(amount * multiplier);
   }
+  // TODO: Equal null
+  // TODO: Equal object
+  public boolean equals(Object object) {
+    Dollar dollar = (Dollar) object;
+    return amount == dollar.amount;
+  }
+  // TODO: hashCode()
+
 }
