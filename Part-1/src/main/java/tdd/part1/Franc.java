@@ -8,7 +8,7 @@ public class Franc extends Money {
   }
 
   // TODO: Common times
-  public Franc times(int multiplier) {
+  public Money times(int multiplier) {
     return new Franc(amount * multiplier);
   }
   // TODO: hashCode()
