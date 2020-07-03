@@ -22,6 +22,6 @@ public class DollarTest {
 
   @Test
   public void testDollarsAreNotFrancs() {
-    assertFalse(Money.dollar(5).equals(new Franc(5)));
+    assertFalse(Money.dollar(5).equals(Money.franc(5)));
   }
 }
