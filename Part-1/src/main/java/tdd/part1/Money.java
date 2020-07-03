@@ -12,6 +12,6 @@ public class Money {
   // TODO: Equal object
   public boolean equals(Object object) {
     Money money = (Money) object;
-    return amount == money.amount;
+    return amount == money.amount && this.getClass().equals(money.getClass());
   }
 }

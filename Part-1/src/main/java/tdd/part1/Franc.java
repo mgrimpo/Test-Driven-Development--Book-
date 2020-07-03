@@ -1,6 +1,6 @@
 package tdd.part1;
 
-// TODO: Dollar france duplication
+// TODO: Dollar/Franc duplication
 public class Franc extends Money {
 
   public Franc(int amount) {
