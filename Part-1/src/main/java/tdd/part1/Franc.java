@@ -7,10 +7,5 @@ public class Franc extends Money {
     super(amount, currency);
   }
 
-  // TODO: Common times
-  public Money times(int multiplier) {
-    return Money.franc(amount * multiplier);
-  }
-
   // TODO: hashCode()
 }
