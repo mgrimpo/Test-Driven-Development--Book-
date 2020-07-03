@@ -1,5 +1,8 @@
 package tdd.part1;
 
+// TODO: $5 + 10 CHF = $10 if rate is 2:1
+// TODO: Money rounding?
+// TODO: hashCode()
 public class Money {
 
   protected int amount;
@@ -11,11 +14,11 @@ public class Money {
   }
 
   public static Money dollar(int amount) {
-    return new Dollar(amount, "USD");
+    return new Money(amount, "USD");
   }
 
   public static Money franc(int amount) {
-    return new Franc(amount, "CHF");
+    return new Money(amount, "CHF");
   }
 
   public Money times(int multiplier) {
