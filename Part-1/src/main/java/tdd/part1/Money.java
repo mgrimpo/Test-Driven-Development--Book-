@@ -1,9 +1,10 @@
 package tdd.part1;
 
+// TODO: $5 + $5 = $10
 // TODO: $5 + 10 CHF = $10 if rate is 2:1
 // TODO: Money rounding?
 // TODO: hashCode()
-public class Money {
+public class Money implements Expression {
 
   protected int amount;
   protected String currency;
@@ -38,5 +39,9 @@ public class Money {
 
   public String toString() {
     return amount + " " + currency;
+  }
+
+  public Expression plus(Money addend) {
+    return new Money(addend.amount + amount, currency);
   }
 }
