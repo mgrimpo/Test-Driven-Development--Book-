@@ -1,5 +1,7 @@
 package tdd.part1;
 
+// TODO: Sum.plus
+// TODO: Expression.times
 // TODO: Money rounding?
 // TODO: hashCode()
 public class Money implements Expression {
