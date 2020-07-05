@@ -1,7 +1,5 @@
 package tdd.part1;
 
-// TODO: $5 + $5 = $10
-// TODO: $5 + 10 CHF = $10 if rate is 2:1
 // TODO: Money rounding?
 // TODO: hashCode()
 public class Money implements Expression {
@@ -22,7 +20,7 @@ public class Money implements Expression {
     return new Money(amount, "CHF");
   }
 
-  public Money times(int multiplier) {
+  public Expression times(int multiplier) {
     return new Money(amount * multiplier, currency);
   }
 
@@ -41,7 +39,7 @@ public class Money implements Expression {
     return amount + " " + currency;
   }
 
-  public Expression plus(Money addend) {
+  public Expression plus(Expression addend) {
     return new Sum(this, addend);
   }
 
