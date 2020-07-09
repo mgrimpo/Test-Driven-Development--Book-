@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from xunit import TestCase, WasRun
+from xunit import TestCase, WasRun, TestResult
 
 
 class TestTestCase(TestCase):
@@ -19,7 +19,19 @@ class TestTestCase(TestCase):
         result = test.run()
         assert "1 run, 1 failed" == result.summary()
 
+    def test_failed_result_formatting(self):
+        result = TestResult()
+        result.testStarted()
+        result.testFailed()
+        assert "1 run, 1 failed"
 
-TestTestCase("test_run").run()
-TestTestCase("test_result").run()
-TestTestCase("test_failed").run()
+
+tests = [
+    TestTestCase("test_run"),
+    TestTestCase("test_result"),
+    TestTestCase("test_failed"),
+    TestTestCase("test_failed_result_formatting")
+]
+for test in tests:
+    print(test.name + ":")
+    print(test.run().summary())

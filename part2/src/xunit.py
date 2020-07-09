@@ -9,6 +9,9 @@ class TestResult(object):
     def testStarted(self):
         self.run_count = self.run_count + 1
 
+    def testFailed(self):
+        self.fail_count = self.fail_count + 1
+
 
 class TestCase(object):
     def __init__(self, name):
@@ -24,8 +27,11 @@ class TestCase(object):
         result = TestResult()
         result.testStarted()
         self.setUp()
-        method = getattr(self, self.name)
-        method()
+        try:
+            method = getattr(self, self.name)
+            method()
+        except:
+            result.testFailed()
         self.tearDown()
         return result
 
