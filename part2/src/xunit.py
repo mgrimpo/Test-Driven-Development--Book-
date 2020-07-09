@@ -1,3 +1,15 @@
+class TestResult(object):
+    def __init__(self):
+        self.run_count = 0
+        self.fail_count = 0
+
+    def summary(self):
+        return "{} run, {} failed".format(self.run_count, self.fail_count)
+
+    def testStarted(self):
+        self.run_count = self.run_count + 1
+
+
 class TestCase(object):
     def __init__(self, name):
         self.name = name
@@ -9,10 +21,13 @@ class TestCase(object):
         pass
 
     def run(self):
+        result = TestResult()
+        result.testStarted()
         self.setUp()
         method = getattr(self, self.name)
         method()
         self.tearDown()
+        return result
 
 
 class WasRun(TestCase):
@@ -28,3 +43,6 @@ class WasRun(TestCase):
 
     def tearDown(self):
         self.log = self.log + "tearDown "
+
+    def brokenMethod(self):
+        raise Exception
