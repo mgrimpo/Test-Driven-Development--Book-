@@ -4,18 +4,10 @@ from xunit import TestCase, WasRun
 
 
 class TestTestCase(TestCase):
-    def setUp(self):
-        self.test = WasRun("testMethod")
-
     def test_run(self):
-        assert (not self.test.wasRun)
-        self.test.run()
-        assert self.test.wasRun
-
-    def test_setUp(self):
-        self.test.run()
-        assert self.test.wasSetUp
+        test = WasRun("testMethod")
+        test.run()
+        assert test.log == "setUp testMethod tearDown "
 
 
 TestTestCase("test_run").run()
-TestTestCase("test_setUp").run()
