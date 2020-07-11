@@ -12,6 +12,12 @@ class TestResult(object):
     def testFailed(self):
         self.fail_count = self.fail_count + 1
 
+    def add(self, result2):
+        result = TestResult()
+        result.fail_count = self.fail_count + result2.fail_count
+        result.run_count = self.run_count + result2.run_count
+        return result
+
 
 class TestCase(object):
     def __init__(self, name):
@@ -52,3 +58,17 @@ class WasRun(TestCase):
 
     def brokenMethod(self):
         raise Exception
+
+
+class TestSuite():
+    def __init__(self):
+        self.tests = []
+
+    def add(self, test):
+        self.tests.append(test)
+
+    def run(self):
+        result = TestResult();
+        for test in self.tests:
+            result = result.add(test.run())
+        return result

@@ -1,6 +1,4 @@
-from unittest import TestCase
-
-from xunit import TestCase, WasRun, TestResult
+from xunit import TestCase, WasRun, TestResult, TestSuite
 
 
 class TestTestCase(TestCase):
@@ -25,13 +23,29 @@ class TestTestCase(TestCase):
         result.testFailed()
         assert "1 run, 1 failed"
 
+    def test_suite(self):
+        suite = TestSuite()
+        suite.add(WasRun("testMethod"))
+        suite.add(WasRun("brokenMethod"))
+        result = suite.run()
+        assert result.summary() == "2 run, 1 failed"
 
-tests = [
-    TestTestCase("test_run"),
-    TestTestCase("test_result"),
-    TestTestCase("test_failed"),
-    TestTestCase("test_failed_result_formatting")
-]
-for test in tests:
-    print(test.name + ":")
-    print(test.run().summary())
+    def test_add_result(self):
+        result1 = TestResult()
+        result2 = TestResult()
+        result1.testStarted()
+        result1.testFailed()
+        result2.testStarted()
+        combined_result = result1.add(result2)
+        assert "2 run, 1 failed" == combined_result.summary()
+
+
+suite = TestSuite()
+suite.add(TestTestCase("test_run"))
+suite.add(TestTestCase("test_result"))
+suite.add(TestTestCase("test_failed"))
+suite.add(TestTestCase("test_failed_result_formatting"))
+suite.add(TestTestCase("test_suite"))
+suite.add(TestTestCase("test_add_result"))
+result = suite.run()
+print(result.summary())
